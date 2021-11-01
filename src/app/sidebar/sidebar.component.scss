@@ -1,0 +1,29 @@
+.logo {
+  background: #33384B;
+  text-align: center;
+  img {
+    width: 60%;
+  }
+}
+.nav-links {
+  padding: 30px 20px;
+  ul {
+    list-style: none;
+    li {
+      margin: 7px 0;
+      a {
+        display: inline-block;
+        padding: 13px 5px;
+        width: 100%;
+        border-radius: 5px;
+        &:hover {
+          background: rgb(221, 221, 221);
+        }
+        &.active {
+          background: #F44336;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
