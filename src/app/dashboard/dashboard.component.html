@@ -1,5 +1,20 @@
-<p>dash</p>
-<div class="card">
-    <h5>Basic</h5>
-    <p-chart type="line" [data]="basicData" [options]="basicOptions"></p-chart>
-</div>
+<header class="header">
+  <div class="title">
+    <h1>Dashboard</h1>
+  </div>
+  <div class="workspaces">
+    <p-dropdown
+      class="dropdown"
+      [options]="workspaces"
+      [(ngModel)]="selectedWorkspace"
+      placeholder="Select Workspace"
+    ></p-dropdown>
+  </div>
+</header>
+<ng-container *ngIf="selectedWorkspace === 'ws-chart'">
+  <app-workspace-charts></app-workspace-charts>
+</ng-container>
+<ng-container *ngIf="selectedWorkspace === 'ws-table'">
+  <app-workspace-tables></app-workspace-tables>
+</ng-container>
+

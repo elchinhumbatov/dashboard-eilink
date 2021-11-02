@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.title h1 {
+  font-size: 2em;
+  font-weight: 300;
+}
+:host ::ng-deep .p-dropdown {
+  min-width: 200px;
+}

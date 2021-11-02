@@ -1,0 +1,11 @@
+<div class="resize-container top-left" #container [style.width.px]="sizes.width" [style.height.px]="sizes.height">
+  <div class="resize resize__bottom--right"
+       (resize)="onResize($event)"
+       [targetElement]="container"
+       [direction]="AngularResizeElementDirection.BOTTOM_RIGHT"
+  ></div>
+  <div class="card">
+    <h5>{{chartData.title}}</h5>
+    <p-chart type="line" [data]="basicData" [options]="basicOptions"></p-chart>
+  </div>
+</div>

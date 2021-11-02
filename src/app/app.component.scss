@@ -10,14 +10,14 @@
     min-width: 300px;
     height: 100vh;
     overflow-y: scroll;
-    background: #eee;
+    background: #fff;
     -webkit-box-shadow: 7px 0px 13px 2px rgba(130,130,130,0.7); 
     box-shadow: 7px 0px 13px 2px rgba(130,130,130,0.7);
   }
   .router-wrapper {
     flex: 1 1 auto;
-    height: 200vh;
     padding: 20px;
+    background: #eee;
   }
 }
 
