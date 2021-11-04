@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import {
   AngularResizeElementDirection,
   AngularResizeElementEvent,
@@ -11,9 +11,15 @@ import { LineChart } from 'src/app/workspaces/workspace-charts/workspace-charts.
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss']
 })
-export class LineChartComponent implements OnInit, OnDestroy {
-  @Input() idx: number | undefined;
-  @Input() chartData: LineChart = {};
+export class LineChartComponent implements OnInit {
+  @Input() idx: number | any;
+  @Input() chartData: LineChart = {
+    title: '',
+    labels: [],
+    datasets: [],
+  };
+  @Output() handleDeleteEmitter = new EventEmitter<number>();
+  @Output() handleEditEmitter = new EventEmitter<number>();
   public readonly AngularResizeElementDirection = AngularResizeElementDirection;
   public sizes: any = {};
   basicData: any;
@@ -22,25 +28,13 @@ export class LineChartComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.chartData);
     const localSizes: any = localStorage.getItem(`sizes${this.idx}`);
     if (localSizes !== null) {
       this.sizes = JSON.parse(localSizes);
     }
     this.basicData = {
-      // labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       labels: this.chartData.labels,
-      datasets: [
-        {
-          // label: 'First Dataset',
-          label: this.chartData.datasetLabel,
-          // data: [65, 59, 80, 81, 56, 55, 40],
-          data: this.chartData.values,
-          fill: false,
-          borderColor: '#42A5F5',
-          tension: 0.4,
-        }
-      ],
+      datasets: this.chartData.datasets,
     };
     this.basicOptions = {
       scales: {
@@ -51,22 +45,21 @@ export class LineChartComponent implements OnInit, OnDestroy {
     };
   }
 
-  ngOnDestroy(): void {
-    this.setSizesToLocal();
-  }
-
   onResize(evt: AngularResizeElementEvent): void {
     this.sizes.width = evt.currentWidthValue;
-    this.sizes.height = evt.currentWidthValue / 1.75;
+    this.sizes.height = evt.currentWidthValue / 1.7;
     // this.sizes.top = evt.currentTopValue;
     // this.sizes.left = evt.currentLeftValue;
-    this.setSizesToLocal();
+    localStorage.setItem(`sizes${this.idx}`, JSON.stringify(this.sizes));
   }
 
-  setSizesToLocal(): void {
-    if (Object.keys(this.sizes).length !== 0) {
-      localStorage.setItem(`sizes${this.idx}`, JSON.stringify(this.sizes));
-    }
+  handleEdit(): void {
+    this.handleEditEmitter.emit(this.idx);
+  }
+
+  handleDelete(): void {
+    localStorage.removeItem(`sizes${this.idx}`);
+    this.handleDeleteEmitter.emit(this.idx);
   }
 
 }

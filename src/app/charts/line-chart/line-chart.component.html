@@ -4,8 +4,19 @@
        [targetElement]="container"
        [direction]="AngularResizeElementDirection.BOTTOM_RIGHT"
   ></div>
+  <div class="resize resize__top--right"
+       (resize)="onResize($event)"
+       [targetElement]="container"
+       [direction]="AngularResizeElementDirection.TOP_RIGHT"
+  ></div>
   <div class="card">
-    <h5>{{chartData.title}}</h5>
+    <div class="card-title">
+      <h5>{{chartData.title}}</h5>
+      <div>
+        <button pButton type="button" icon="pi pi-ellipsis-h" class="p-button-sm" (click)="handleEdit()"></button>
+        <button pButton type="button" icon="pi pi-times" class="p-button-sm delete-btn" (click)="handleDelete()"></button>
+      </div>
+    </div>
     <p-chart type="line" [data]="basicData" [options]="basicOptions"></p-chart>
   </div>
 </div>

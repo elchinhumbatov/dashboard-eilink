@@ -11,10 +11,11 @@
     ></p-dropdown>
   </div>
 </header>
-<ng-container *ngIf="selectedWorkspace === 'ws-chart'">
-  <app-workspace-charts></app-workspace-charts>
+<ng-container [ngSwitch]="selectedWorkspace">
+  <ng-container *ngSwitchCase="'ws-chart'">
+    <app-workspace-charts></app-workspace-charts>
+  </ng-container>
+  <ng-container *ngSwitchCase="'ws-table'">
+    <app-workspace-tables></app-workspace-tables>
+  </ng-container>
 </ng-container>
-<ng-container *ngIf="selectedWorkspace === 'ws-table'">
-  <app-workspace-tables></app-workspace-tables>
-</ng-container>
-

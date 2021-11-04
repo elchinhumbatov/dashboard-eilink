@@ -11,6 +11,7 @@ import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {ChipsModule} from 'primeng/chips';
+import {ColorPickerModule} from 'primeng/colorpicker';
 
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -42,6 +43,7 @@ import { LineChartComponent } from './charts/line-chart/line-chart.component';
     ButtonModule,
     InputTextModule,
     ChipsModule,
+    ColorPickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
