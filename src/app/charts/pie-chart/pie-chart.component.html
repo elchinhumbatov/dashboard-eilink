@@ -1,0 +1,22 @@
+<div class="resize-container top-left" #container [style.width.px]="pieSizes.width" [style.height.px]="pieSizes.height">
+  <div class="resize resize__bottom--right"
+       (resize)="onResize($event)"
+       [targetElement]="container"
+       [direction]="AngularResizeElementDirection.BOTTOM_RIGHT"
+  ></div>
+  <div class="resize resize__top--right"
+       (resize)="onResize($event)"
+       [targetElement]="container"
+       [direction]="AngularResizeElementDirection.TOP_RIGHT"
+  ></div>
+  <div class="card">
+    <div class="card-title">
+      <h5>{{pieData.title}}</h5>
+      <div>
+        <button pButton type="button" icon="pi pi-ellipsis-h" class="p-button-sm" (click)="handleEdit()"></button>
+        <button pButton type="button" icon="pi pi-times" class="p-button-sm delete-btn" (click)="handleDelete()"></button>
+      </div>
+    </div>
+    <p-chart type="pie" [data]="data" [style]="{'width': '40%'}"></p-chart>
+  </div>
+</div>

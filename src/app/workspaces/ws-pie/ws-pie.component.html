@@ -1,0 +1,98 @@
+<p-button
+  (click)="isUpdate = false; displayBasic = true"
+  icon="pi pi-plus"
+  label="Create Pie"
+  [disabled]="displayBasic"
+></p-button>
+<p-dialog
+  header="Header"
+  [(visible)]="displayBasic"
+  [style]="{ width: '50vw' }"
+  (onHide)="resetData()"
+>
+  <div class="pie-create-section">
+    <div class="title formgroup">
+      <span class="p-float-label">
+        <input type="text" pInputText [(ngModel)]="title" />
+        <label for="float-input">Pie Name</label>
+      </span>
+    </div>
+    <div class="labels formgroup">
+      <div class="p-float-label">
+        <p-chips
+          id="labels"
+          [(ngModel)]="labels"
+          separator=","
+          [addOnBlur]="true"
+        ></p-chips>
+        <label for="labels" *ngIf="!isUpdate">Pie Labels</label>
+      </div>
+      <small id="labels-help">Enter your pie labels comma separatedly.</small>
+    </div>
+    <div *ngFor="let item of datasets; let i = index">
+      <div class="datasets">
+        <div class="dataset">
+          <div class="dataset-label formgroup">
+            <div class="values">
+              <span class="p-float-label">
+                <p-chips
+                  id="values"
+                  name="values_{{ i }}"
+                  [(ngModel)]="item.data"
+                  separator=","
+                  [addOnBlur]="true"
+                ></p-chips>
+                <label for="values" *ngIf="!isUpdate">Pie Values</label>
+              </span>
+              <small id="values-help"
+                >Enter your Pie values comma separatedly.</small
+              >
+            </div>
+          </div>
+          <div>
+            <p-colorPicker
+              class="picker"
+              *ngFor="let dataItem of datasets[i].data; let idx = index"
+              (onChange)="handleColor($event, idx)"
+            ></p-colorPicker>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button
+      *ngIf="!isUpdate"
+      icon="pi pi-check"
+      (click)="createPie()"
+      label="Create"
+      styleClass="p-button-text"
+    ></p-button>
+    <p-button
+      *ngIf="isUpdate"
+      icon="pi pi-check"
+      (click)="updatePie()"
+      label="Update"
+      styleClass="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>
+
+<ng-container *ngIf="pies.length; else noPies">
+  <section class="pie-section">
+    <div *ngFor="let pie of pies; let idx = index">
+      <app-pie-chart
+        [idx]="idx"
+        [pieData]="pie"
+        (handleEditEmitter)="onEdit($event)"
+        (handleDeleteEmitter)="onDelete($event)"
+      ></app-pie-chart>
+      
+    </div>
+  </section>
+</ng-container>
+<ng-template #noPies>
+  <div style="padding: 20px">
+    <p>No Pies yet</p>
+  </div>
+</ng-template>

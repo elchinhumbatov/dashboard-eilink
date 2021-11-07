@@ -1,16 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-workspace-charts',
   templateUrl: './workspace-charts.component.html',
   styleUrls: ['./workspace-charts.component.scss'],
 })
-export class WorkspaceChartsComponent implements OnInit, OnDestroy {
+export class WorkspaceChartsComponent implements OnInit {
   displayBasic = false;
   isUpdate = false;
   updateId: number | undefined;
+  // clicked: number | undefined;
   lineCharts: LineChart[] = [];
-  lineChartsCopy: LineChart[] = [];
   title = '';
   labels: string[] = [];
   dataset = new Dataset('', [], '#42A5F5');
@@ -22,16 +22,11 @@ export class WorkspaceChartsComponent implements OnInit, OnDestroy {
     const lineChartsFromStore = localStorage.getItem('lineCharts');
     if (lineChartsFromStore !== null) {
       this.lineCharts = JSON.parse(lineChartsFromStore);
-      this.lineChartsCopy = [...this.lineCharts];
     }
   }
 
-  ngOnDestroy(): void {
-    localStorage.setItem('lineCharts', JSON.stringify(this.lineCharts));
-  }
-
   addDataset(): void {
-    let dataset = new Dataset('', [], '#42A5F5');
+    const dataset = new Dataset('', [], '#42A5F5');
     this.datasets.push(dataset);
   }
   deleteDataset(i: number): void {
@@ -81,6 +76,13 @@ export class WorkspaceChartsComponent implements OnInit, OnDestroy {
     this.labels = [];
     this.datasets = [new Dataset('', [], '#42A5F5')];
   }
+
+  // handleMouseDown(idx: number): void {
+  //   this.clicked = idx;
+  // }
+  // handleMouseUp(): void {
+  //   this.clicked = undefined;
+  // }
 }
 
 export interface LineChart {

@@ -12,6 +12,9 @@ import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {ChipsModule} from 'primeng/chips';
 import {ColorPickerModule} from 'primeng/colorpicker';
+import {TableModule} from 'primeng/table';
+import {InputNumberModule} from 'primeng/inputnumber';
+
 
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -19,6 +22,9 @@ import { AboutComponent } from './about/about.component';
 import { WorkspaceChartsComponent } from './workspaces/workspace-charts/workspace-charts.component';
 import { WorkspaceTablesComponent } from './workspaces/workspace-tables/workspace-tables.component';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
+import { TableComponent } from './charts/table/table.component';
+import { WsPieComponent } from './workspaces/ws-pie/ws-pie.component';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 
 
 @NgModule({
@@ -29,7 +35,10 @@ import { LineChartComponent } from './charts/line-chart/line-chart.component';
     AboutComponent,
     WorkspaceChartsComponent,
     WorkspaceTablesComponent,
-    LineChartComponent
+    LineChartComponent,
+    TableComponent,
+    WsPieComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +53,8 @@ import { LineChartComponent } from './charts/line-chart/line-chart.component';
     InputTextModule,
     ChipsModule,
     ColorPickerModule,
+    TableModule,
+    InputNumberModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

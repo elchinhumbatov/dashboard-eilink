@@ -1,0 +1,24 @@
+.resize-container {
+  min-width: 300px;
+  min-height: 350px;
+  width: 300px;
+  height: 350px;
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h5 {
+    font-size: 1.3em;
+  }
+  .delete-btn {
+    margin-left: 5px;
+    background: #F44336;
+    border-color: #F44336;
+  }
+}

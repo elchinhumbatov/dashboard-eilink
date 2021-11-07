@@ -1,0 +1,51 @@
+.pie-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.pie-create-section {
+  padding-top: 25px;
+  input {
+    width: 100%;
+  }
+  .formgroup {
+    margin-bottom: 25px;
+  }
+  .datasets {
+    display: flex;
+    align-items: stretch;
+    .dataset {
+      width: 100%;
+      border: 1px dashed gray;
+      padding: 25px;
+    }
+    .values {
+      width: 100%;
+    }
+    .dataset-label {
+      display: flex;
+      align-items: center;
+      span {
+        width: 100%;
+      }
+    }
+    .picker {
+      margin-right: 10px;
+    }
+    .add-btn {
+      height: 100%;
+      margin-left: 10px;
+    }
+  }
+}
+
+:host ::ng-deep .p-chips {
+  width: 100%;
+  ul {
+    width: 100%;
+  }
+}
+:host ::ng-deep .p-colorpicker-overlay-panel {
+  right: 0 !important;
+  top: -170px !important;
+}

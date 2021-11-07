@@ -1,1 +1,55 @@
-<p>workspace-tables works!</p>
+<p-button (click)="displayBasic=true" icon="pi pi-plus" label="Create Table"></p-button>
+<p-dialog header="Create new Table" [(visible)]="displayBasic" [style]="{width: '50vw'}" (onHide)='resetData()'>
+    <div class="create-table-section">
+      <div class="p-field p-col-12 p-md-3 formgroup caolumnCreator">
+        <label for="horizontal">Column Count</label>
+        <p-inputNumber [(ngModel)]="columnCount" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1"
+        decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="0" [max]="10">
+        </p-inputNumber>
+        <button pButton label="Create" (click)='createColumn()'></button>
+      </div>
+      <div *ngFor="let item of colsInputs; let idx=index">
+        <div class="columns formgroup">
+          <span class="p-float-label">
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="item.field"
+            />
+            <label for="float-input">Column Name</label>
+          </span>
+          <span class="p-float-label">
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="item.header"
+              style="text-transform: capitalize"
+            />
+            <label for="float-input">Column Header</label>
+          </span>
+        </div>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="createTable()" label="Create" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
+
+<ng-container *ngIf="tables.length; else noTables">
+  <section class="tables-section">
+    <div *ngFor="let table of tables; let idx = index" style="margin: 20px 0;">
+      <app-table 
+        [idx]='idx'
+        [colsInputs]='table'
+        (deleteEmitter)='deleteTable($event)'
+      ></app-table>
+    </div>
+  </section>
+</ng-container>
+<ng-template #noTables>
+  <div style="padding: 20px;">
+    <p>No tables yet</p>
+  </div>
+</ng-template>
+
+

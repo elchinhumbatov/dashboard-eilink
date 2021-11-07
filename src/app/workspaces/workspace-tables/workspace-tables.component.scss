@@ -1,0 +1,21 @@
+.create-table-section {
+  padding-top: 25px;
+  input {
+    width: 100%;
+  }
+  .formgroup {
+    margin-bottom: 25px;
+  }
+  .caolumnCreator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .columns {
+    display: flex;
+    span {
+      width: 50%;
+      margin: 0 5px;
+    }
+  }
+}

@@ -14,7 +14,7 @@
           [(ngModel)]="title"
           style="text-transform: capitalize"
         />
-        <label for="float-input">Title</label>
+        <label for="float-input">Chart Name</label>
       </span>
     </div>
     <div class="labels formgroup">
@@ -105,7 +105,12 @@
 
 <ng-container *ngIf="lineCharts.length; else noCharts">
   <section class="charts-section">
-    <div *ngFor="let lineChart of lineCharts; let idx = index">
+    <div 
+      *ngFor="let lineChart of lineCharts; let idx = index" 
+    >
+    <!-- [ngStyle]="{'position' : idx === clicked && 'absolute'}"
+      (mousedown)="handleMouseDown(idx)"
+      (mouseup)="handleMouseUp()" -->
       <app-line-chart
         [idx]="idx"
         [chartData]="lineChart"
